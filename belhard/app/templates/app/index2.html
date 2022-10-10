@@ -6,4 +6,9 @@ MAIN PAGE 2
 {% block content %}
 {% include "app/contact.html" %}
 {% include "app/about.html" %}
+<form method="post">
+    {% csrf_token %}
+    {{ calculator_form }}
+    <button>SEND</button>
+</form>
 {% endblock %}

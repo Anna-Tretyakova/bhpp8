@@ -2,6 +2,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 from .models import Category, Product
+from .forms import Calculator
 
 
 mixin = {
@@ -21,7 +22,7 @@ def index(request: HttpRequest):
 
 
 def index2(request):
-    return render(request, 'app/index2.html', mixin)
+    return render(request, 'app/index2.html', mixin | {'calculator_form': Calculator()})
 
 
 def error404(request, exception):
