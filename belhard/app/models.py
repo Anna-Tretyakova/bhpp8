@@ -75,6 +75,12 @@ class Product(models.Model):
         on_delete=models.PROTECT,
         verbose_name='категория'
     )
+    image = models.ImageField(
+        upload_to='products/',
+        verbose_name='картинка',
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         return self.title

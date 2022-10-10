@@ -7,7 +7,8 @@ from .forms import Calculator, FeedbackForm
 
 mixin = {
     'facebook': 'https://facebook.com',
-    'twitter': 'https://twitter.com'
+    'twitter': 'https://twitter.com',
+    'brand_name': 'BelHard'
 }
 
 

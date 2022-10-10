@@ -51,7 +51,7 @@ class ProductAdmin(admin.ModelAdmin):
             'description': 'описание'
         }),
         ('Дополнительные настройки', {
-            'fields': ('is_published', 'descr', 'count')
+            'fields': ('is_published', 'descr', 'count', 'image')
         })
     )
     list_editable = ('category', )

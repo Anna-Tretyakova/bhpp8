@@ -14,7 +14,7 @@
                                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                 <div class="divider-custom-line"></div>
                             </div>
-                            <img class="img-fluid rounded mb-5" src="{% static 'assets/img/portfolio/cabin.png' %}" alt="..." />
+                            <img class="img-fluid rounded mb-5" src="{{ product.image.url }}" alt="..." />
                             <p class="mb-4">{{ product.descr }}</p>
                             <button class="btn btn-primary" data-bs-dismiss="modal">
                                 <i class="fas fa-xmark fa-fw"></i>
