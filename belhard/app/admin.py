@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Product, Order
+from .models import Category, Product, Order, Feedback
 
 
 class ProductTabularInline(admin.TabularInline):
@@ -66,6 +66,18 @@ class OrderAdmin(admin.ModelAdmin):
     readonly_fields = ('date_created', )
 
 
+@admin.register(Feedback)
+class FeedbackAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'phone_number', 'date_created')
+    list_filter = ('email', 'phone_number')
+    date_hierarchy = 'date_created'
+
+
+class FeedbackManager(FeedbackAdmin):
+    readonly_fields = ('date_created', 'email', 'phone_number', 'message', 'name')
+
+
 appadmin.register(Category, CategoryAdmin)
 appadmin.register(Product, ProductAdmin)
 appadmin.register(Order, OrderAdmin)
+appadmin.register(Feedback, FeedbackManager)

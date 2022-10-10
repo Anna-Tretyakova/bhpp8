@@ -2,6 +2,7 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.timezone import now
 
 
 class Category(models.Model):
@@ -88,7 +89,7 @@ class Product(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name='пользователь')
     product = models.ForeignKey('Product', on_delete=models.DO_NOTHING, verbose_name='товар')
-    date_created = models.DateTimeField(default=datetime.utcnow(), verbose_name='дата')
+    date_created = models.DateTimeField(default=now(), verbose_name='дата')
     is_paid = models.BooleanField(default=False, verbose_name='оплата')
 
     class Meta:
@@ -96,3 +97,34 @@ class Order(models.Model):
         ordering = ('date_created', )
         verbose_name = 'заказ'
         verbose_name_plural = 'заказы'
+
+
+class Feedback(models.Model):
+    name = models.CharField(
+        max_length=24,
+        verbose_name='имя'
+    )
+    email = models.EmailField(
+        verbose_name='почта'
+    )
+    phone_number = models.CharField(
+        max_length=13,
+        verbose_name='номер телефона'
+    )
+    message = models.CharField(
+        max_length=140,
+        verbose_name='сообщение'
+    )
+    date_created = models.DateTimeField(
+        default=now(),
+        verbose_name='дата публикации'
+    )
+
+    def __str__(self):
+        return self.email
+
+    class Meta:
+        db_table = 'app_feedbacks'
+        ordering = ('date_created', )
+        verbose_name = 'отзыв'
+        verbose_name_plural = 'отзывы'

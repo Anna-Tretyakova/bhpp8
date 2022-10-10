@@ -1,15 +1,12 @@
 {% extends "app/base.html" %}
 {% load static %}
+
 {% block title %}
 MAIN PAGE 2
 {% endblock %}
+
 {% block content %}
 {% include "app/contact.html" %}
 {% include "app/about.html" %}
-<form method="post">
-    {% csrf_token %}
-    {{ calculator_form }}
-    <button>SEND</button>
-    {{ result|default_if_none:"" }}
-</form>
+<!--{% include "app/calculator_form.html" %}-->
 {% endblock %}
