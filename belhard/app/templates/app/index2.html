@@ -10,5 +10,6 @@ MAIN PAGE 2
     {% csrf_token %}
     {{ calculator_form }}
     <button>SEND</button>
+    {{ result|default_if_none:"" }}
 </form>
 {% endblock %}

@@ -22,7 +22,14 @@ def index(request: HttpRequest):
 
 
 def index2(request):
-    return render(request, 'app/index2.html', mixin | {'calculator_form': Calculator()})
+    result = None
+    if request.method == 'POST':
+        result = int(request.POST.get('width')) * int(request.POST.get('height'))
+    return render(
+        request,
+        'app/index2.html',
+        mixin | {'calculator_form': Calculator(), 'result': result}
+    )
 
 
 def error404(request, exception):
