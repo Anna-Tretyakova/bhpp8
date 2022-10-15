@@ -1,5 +1,7 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
+from django.views import View
+from django.views.generic import ListView
 
 from .models import Category, Product
 from .forms import Calculator, FeedbackForm
@@ -21,21 +23,9 @@ def index(request: HttpRequest):
             form.save()
     return render(request, 'app/index.html', {
         'categories': categories,
-        'menu': ['Menu 1', 'Menu 2'],
         'products': products,
         'feedback_form': FeedbackForm()
     } | mixin)
-
-
-def index2(request):
-    result = None
-    if request.method == 'POST':
-        result = int(request.POST.get('width')) * int(request.POST.get('height'))
-    return render(
-        request,
-        'app/index2.html',
-        mixin | {'calculator_form': Calculator(), 'result': result}
-    )
 
 
 def error404(request, exception):
